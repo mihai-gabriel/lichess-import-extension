@@ -6,7 +6,7 @@ I have hardcoded all the urls and DOM elements.
 Steps:
 1. Download the source
 2. Extensions -> Developer Mode ON -> Load unpacked
-3. (Optinally) Pin the extension
+3. (Optional) Pin the extension
 4. Play a game on chess.com
 5. Right after the game finishes, click on the extension icon
 
