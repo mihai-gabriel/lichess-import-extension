@@ -13,14 +13,22 @@ const waitAndSelectButton = async (selector, timeout) => {
   });
 };
 
+const unfocus = async () => {
+  if (!document.querySelector("[aria-label='Share']")) {
+    return waitAndSelectButton("[aria-label='Focus Mode']", 50);
+  }
+
+  return Promise.resolve();
+};
+
 const openSharePopup = async () => {
-  return waitAndSelectButton("[aria-label='Share']", 1200);
+  return waitAndSelectButton("[aria-label='Share']", 500);
 };
 
 const selectPgnTab = async () => {
   return waitAndSelectButton(
     ".share-menu-tab-selector-tab span:first-child",
-    300
+    100
   );
 };
 
@@ -33,6 +41,10 @@ chrome.runtime.onMessage.addListener(function (
   _sender,
   sendResponse
 ) {
-  openSharePopup().then(selectPgnTab).then(copyPgn).then(sendResponse);
+  unfocus()
+    .then(openSharePopup)
+    .then(selectPgnTab)
+    .then(copyPgn)
+    .then(sendResponse);
   return true;
 });
